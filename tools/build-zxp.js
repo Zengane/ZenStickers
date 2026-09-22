@@ -1,8 +1,8 @@
 // Builds a signed ZXP installer:   npm run build:zxp
 //
 //   dist/ZenStickers-<version>.zxp        the extension, signed
-//   dist/Install on Windows.cmd           double-click installers that unpack the ZXP
-//   dist/Install on macOS.command         into the user's CEP folder (no Adobe installer)
+//   dist/Install-Windows.cmd           double-click installers that unpack the ZXP
+//   dist/Install-macOS.command         into the user's CEP folder (no Adobe installer)
 //   dist/Fix blank panel (...)            optional: turns on PlayerDebugMode
 //
 // Signing needs Adobe's ZXPSignCmd and a certificate. Both live OUTSIDE the

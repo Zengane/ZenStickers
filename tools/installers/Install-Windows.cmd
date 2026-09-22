@@ -50,6 +50,6 @@ echo.
 echo  Done. Start Premiere Pro or After Effects, then choose
 echo  Window ^> Extensions ^> Zen Stickers.
 echo.
-echo  If the panel stays blank, run "Fix blank panel (Windows).cmd".
+echo  If the panel stays blank, run "Fix-blank-panel-Windows.cmd".
 echo.
 pause

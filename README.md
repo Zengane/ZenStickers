@@ -45,13 +45,13 @@ Made by Zengane as a replacement for Wander after the Tenor API closed.
 
 ## Install
 
-1. Download the latest `ZenStickers-x.y.z.zxp` and `Install on Windows.cmd` (or
-   `Install on macOS.command`) from the [Releases](https://github.com/Zengane/ZenStickers/releases) page.
+1. Download the latest `ZenStickers-x.y.z.zxp` and `Install-Windows.cmd` (or
+   `Install-macOS.command`) from the [Releases](https://github.com/Zengane/ZenStickers/releases) page.
 2. Put them in the same folder, close Premiere Pro and After Effects, and double-click
    the installer. No admin rights and no Creative Cloud sign-in needed.
 3. Open **Window > Extensions > Zen Stickers**.
 
-Panel blank? Run `Fix blank panel (...)` from the same release. Details in the
+Panel blank? Run `Fix-blank-panel-...` from the same release. Details in the
 [user guide](docs/GUIDE.md#1-install).
 
 Needs Premiere Pro 2021 (15.0) or newer, or After Effects 2022 (22.0) or newer.

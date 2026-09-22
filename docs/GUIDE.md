@@ -44,10 +44,10 @@ SVG files in After Effects need version 2025 or newer.
 ### Windows
 
 1. Go to the [Releases page](https://github.com/Zengane/ZenStickers/releases) and open the newest release.
-2. Download two files: `ZenStickers-x.y.z.zxp` and `Install on Windows.cmd`.
+2. Download two files: `ZenStickers-x.y.z.zxp` and `Install-Windows.cmd`.
 3. Put both files in the same folder, for example Downloads.
 4. Close Premiere Pro and After Effects.
-5. Double-click `Install on Windows.cmd`. When it says **Done**, press a key to close it.
+5. Double-click `Install-Windows.cmd`. When it says **Done**, press a key to close it.
    If Windows shows "Windows protected your PC", click **More info**, then **Run anyway**.
 
 The installer puts Zen Stickers in your own user folder
@@ -56,15 +56,15 @@ need the Creative Cloud app to be signed in.
 
 ### macOS
 
-1. Download `ZenStickers-x.y.z.zxp` and `Install on macOS.command` from the newest release.
+1. Download `ZenStickers-x.y.z.zxp` and `Install-macOS.command` from the newest release.
 2. Put both in the same folder.
 3. Quit Premiere Pro and After Effects.
-4. Right-click `Install on macOS.command` and choose **Open** (the first time, macOS
+4. Right-click `Install-macOS.command` and choose **Open** (the first time, macOS
    asks if you trust it). When it says **Done**, close the window.
 
 ### Panel is blank?
 
-Some computers refuse the extension's signature. Download `Fix blank panel (Windows).cmd`
+Some computers refuse the extension's signature. Download `Fix-blank-panel-Windows.cmd`
 (or the macOS one) from the same release and double-click it. It turns on Adobe's
 "PlayerDebugMode" for your user, which is Adobe's own advice for this problem. Then
 restart Premiere Pro or After Effects.
@@ -482,7 +482,7 @@ Open with the **gear** button, or the panel menu (the ≡ icon in the panel's ti
 
 ## 21. Update and uninstall
 
-**Update:** download the new `.zxp` and `Install on ...` file and run the installer again,
+**Update:** download the new `.zxp` and `Install-...` file and run the installer again,
 the same way as [the first install](#1-install). It replaces the old version. Your
 settings and keys stay.
 
@@ -504,11 +504,11 @@ settings and keys stay.
 
 **"Failed to install, status = -631".**
 That message comes from Adobe's installer when the Creative Cloud app is not signed in.
-Use `Install on Windows.cmd` / `Install on macOS.command` from the release instead:
+Use `Install-Windows.cmd` / `Install-macOS.command` from the release instead:
 they do not need Creative Cloud.
 
 **The panel is blank after installing.**
-Run `Fix blank panel (Windows).cmd` (or the macOS one) from the release, then restart
+Run `Fix-blank-panel-Windows.cmd` (or the macOS one) from the release, then restart
 the app. It turns on Adobe's "PlayerDebugMode" for your user. To undo it, run the same
 file from a command prompt with the word `undo` after it.
 

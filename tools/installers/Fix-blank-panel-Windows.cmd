@@ -6,7 +6,7 @@ rem Adobe's own advice for that (Known Issue 2024): turn on "PlayerDebugMode", w
 rem makes Premiere Pro and After Effects load extensions without checking their
 rem signature. It is set for the current Windows user only, in
 rem HKEY_CURRENT_USER\Software\Adobe\CSXS.9 to CSXS.13.
-rem To undo it later: run this file with the word "undo" (Fix blank panel (Windows).cmd undo).
+rem To undo it later: run this file with the word "undo" (Fix-blank-panel-Windows.cmd undo).
 
 echo.
 if /i "%~1"=="undo" goto :undo

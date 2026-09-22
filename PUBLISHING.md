@@ -58,15 +58,17 @@ Most people do not mind. If you do, ask for help before the first commit.
    ```
    npm run build:zxp
    ```
-   This makes, in `dist/`: `ZenStickers-x.y.z.zxp`, `Install on Windows.cmd`,
-   `Install on macOS.command`, `Fix blank panel (Windows).cmd` and
-   `Fix blank panel (macOS).command`.
-4. In GitHub Desktop: commit ("Version x.y.z") and click **Push origin**.
-5. On the GitHub website, open your repository > **Releases > Draft a new release**.
-   - **Tag**: `v1.2.0` (your new version).
-   - **Title**: `Zen Stickers 1.2.0`.
-   - Drag in the five files from `dist/` (not the `stage` folder).
-   - Click **Publish release**.
+   This makes, in `dist/`: `ZenStickers-x.y.z.zxp`, `Install-Windows.cmd`,
+   `Install-macOS.command`, `Fix-blank-panel-Windows.cmd` and
+   `Fix-blank-panel-macOS.command`.
+4. Commit and push (GitHub Desktop: **Commit to main**, then **Push origin**).
+5. Publish the release with its files:
+   ```
+   npm run release
+   ```
+   It uses the GitHub sign-in Git already has, makes release `vX.Y.Z` with the five
+   files from `dist/`, and replaces them if the release already exists.
+   Add `-- --delete-old v1.5.2` to remove an older release.
 
 ## Keep these safe (never upload them)
 

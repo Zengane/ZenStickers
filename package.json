@@ -11,7 +11,8 @@
     "test:app": "node --experimental-websocket tests/app.test.js",
     "build:index": "node tools/build-index.js",
     "build:zxp": "node tools/build-zxp.js",
-    "test:ffmpeg": "node tests/ffmpeg.live.js"
+    "test:ffmpeg": "node tests/ffmpeg.live.js",
+    "release": "node tools/release.js"
   },
   "license": "SEE LICENSE IN LICENSE",
   "devDependencies": {
