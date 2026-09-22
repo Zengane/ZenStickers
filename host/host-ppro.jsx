@@ -13,7 +13,7 @@
 $.global.ZenStickers = (function () {
 
     var TICKS_PER_SECOND = 254016000000;
-    var BUILD = "zs-ppro 1.5.2";
+    var BUILD = "zs-ppro 1.5.3";
 
     /* ---------- tiny JSON writer (ExtendScript has no JSON object) ---------- */
 

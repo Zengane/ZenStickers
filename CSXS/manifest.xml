@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ExtensionManifest Version="11.0" ExtensionBundleId="com.zengane.zenstickers"
-    ExtensionBundleVersion="1.5.2" ExtensionBundleName="Zen Stickers"
+    ExtensionBundleVersion="1.5.3" ExtensionBundleName="Zen Stickers"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <ExtensionList>
-        <Extension Id="com.zengane.zenstickers.panel" Version="1.5.2" />
-        <Extension Id="com.zengane.zenstickers.settings" Version="1.5.2" />
+        <Extension Id="com.zengane.zenstickers.panel" Version="1.5.3" />
+        <Extension Id="com.zengane.zenstickers.settings" Version="1.5.3" />
     </ExtensionList>
     <ExecutionEnvironment>
         <HostList>

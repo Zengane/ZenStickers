@@ -11,7 +11,7 @@
  */
 $.global.ZenStickers = (function () {
 
-    var BUILD = "zs-aeft 1.5.2";
+    var BUILD = "zs-aeft 1.5.3";
 
     function esc(s) {
         s = String(s);

@@ -1,8 +1,9 @@
 // Builds a signed ZXP installer:   npm run build:zxp
 //
 //   dist/ZenStickers-<version>.zxp        the extension, signed
-//   dist/Install on Windows.cmd           double-click installers that hand the
-//   dist/Install on macOS.command         ZXP to Adobe's own installer (UPIA)
+//   dist/Install on Windows.cmd           double-click installers that unpack the ZXP
+//   dist/Install on macOS.command         into the user's CEP folder (no Adobe installer)
+//   dist/Fix blank panel (...)            optional: turns on PlayerDebugMode
 //
 // Signing needs Adobe's ZXPSignCmd and a certificate. Both live OUTSIDE the
 // repository:
@@ -89,20 +90,16 @@ function copy(src, dst) {
     const check = run(['-verify', out]);
     if (!/Signature verified successfully/i.test(check)) throw new Error('The ZXP did not verify:\n' + check);
 
-    /* Double-click installers: Adobe's Unified Plugin Installer Agent ships with Creative Cloud. */
-    const zxp = path.basename(out);
-    fs.writeFileSync(path.join(DIST, 'Install on Windows.cmd'),
-        '@echo off\r\nrem Installs Zen Stickers with Adobe\'s own installer (comes with Creative Cloud).\r\n' +
-        'set UPIA="%CommonProgramFiles%\\Adobe\\Adobe Desktop Common\\RemoteComponents\\UPI\\UnifiedPluginInstallerAgent\\UnifiedPluginInstallerAgent.exe"\r\n' +
-        'if not exist %UPIA% ( echo Adobe Creative Cloud is not installed here. Use a ZXP installer instead. & pause & exit /b 1 )\r\n' +
-        '%UPIA% /install "%~dp0' + zxp + '"\r\necho.\r\necho Done. Restart Premiere Pro or After Effects, then open Window ^> Extensions ^> Zen Stickers.\r\npause\r\n');
-    fs.writeFileSync(path.join(DIST, 'Install on macOS.command'),
-        '#!/bin/sh\n# Installs Zen Stickers with Adobe\'s own installer (comes with Creative Cloud).\n' +
-        'UPIA="/Library/Application Support/Adobe/Adobe Desktop Common/RemoteComponents/UPI/UnifiedPluginInstallerAgent/UnifiedPluginInstallerAgent.app/Contents/MacOS/UnifiedPluginInstallerAgent"\n' +
-        'DIR="$(cd "$(dirname "$0")" && pwd)"\n' +
-        'if [ ! -x "$UPIA" ]; then echo "Adobe Creative Cloud is not installed here. Use a ZXP installer instead."; exit 1; fi\n' +
-        '"$UPIA" --install "$DIR/' + zxp + '"\necho "Done. Restart Premiere Pro or After Effects, then open Window > Extensions > Zen Stickers."\n');
-    try { fs.chmodSync(path.join(DIST, 'Install on macOS.command'), 0o755); } catch (e) {}
+    /* Double-click installers (tools/installers). They unpack the ZXP themselves into
+       the user's CEP folder: Adobe's own installer (UPIA) fails with -631 when the
+       Creative Cloud app is not signed in, and ZXP installer apps call the same thing.
+       Windows scripts need CRLF line endings or cmd.exe loses its place at labels. */
+    for (const f of fs.readdirSync(path.join(ROOT, 'tools', 'installers'))) {
+        let text = fs.readFileSync(path.join(ROOT, 'tools', 'installers', f), 'utf8').split('\r\n').join('\n');
+        if (/\.cmd$/i.test(f)) text = text.split('\n').join('\r\n');
+        fs.writeFileSync(path.join(DIST, f), text);
+        if (/\.command$/.test(f)) { try { fs.chmodSync(path.join(DIST, f), 0o755); } catch (e) {} }
+    }
 
     const mb = (fs.statSync(out).size / 1048576).toFixed(1);
     console.log('Done:', path.relative(ROOT, out), mb + ' MB, signature verified.');

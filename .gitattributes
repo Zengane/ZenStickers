@@ -7,3 +7,5 @@
 *.png binary
 *.zxp binary
 bin/esrgan/mac/realesrgan-ncnn-vulkan binary
+*.cmd text eol=crlf
+*.command text eol=lf

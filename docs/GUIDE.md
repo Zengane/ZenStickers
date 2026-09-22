@@ -47,21 +47,32 @@ SVG files in After Effects need version 2025 or newer.
 2. Download two files: `ZenStickers-x.y.z.zxp` and `Install on Windows.cmd`.
 3. Put both files in the same folder, for example Downloads.
 4. Close Premiere Pro and After Effects.
-5. Double-click `Install on Windows.cmd`. It uses Adobe's own installer, which comes
-   with Creative Cloud. When it says **Done**, press a key to close it.
+5. Double-click `Install on Windows.cmd`. When it says **Done**, press a key to close it.
+   If Windows shows "Windows protected your PC", click **More info**, then **Run anyway**.
+
+The installer puts Zen Stickers in your own user folder
+(`%APPDATA%\Adobe\CEP\extensions\ZenStickers`). It needs no admin rights and does not
+need the Creative Cloud app to be signed in.
 
 ### macOS
 
 1. Download `ZenStickers-x.y.z.zxp` and `Install on macOS.command` from the newest release.
 2. Put both in the same folder.
-3. Close Premiere Pro and After Effects.
+3. Quit Premiere Pro and After Effects.
 4. Right-click `Install on macOS.command` and choose **Open** (the first time, macOS
    asks if you trust it). When it says **Done**, close the window.
 
-### Another way (both systems)
+### Panel is blank?
 
-Open the `.zxp` file with a ZXP installer, for example **ZXP Installer** by aescripts
-(free). Drag the file onto its window.
+Some computers refuse the extension's signature. Download `Fix blank panel (Windows).cmd`
+(or the macOS one) from the same release and double-click it. It turns on Adobe's
+"PlayerDebugMode" for your user, which is Adobe's own advice for this problem. Then
+restart Premiere Pro or After Effects.
+
+### Other ways
+
+A ZXP installer app (for example aescripts ZXP Installer) also works, but only when the
+Creative Cloud app is signed in. Otherwise it fails with "status = -631".
 
 > The macOS version has not been tested yet. Please report what works and what does not.
 
@@ -471,14 +482,14 @@ Open with the **gear** button, or the panel menu (the ≡ icon in the panel's ti
 
 ## 21. Update and uninstall
 
-**Update:** download the new `.zxp` and run the installer again, the same way as
-[the first install](#1-install). Your settings and keys stay.
+**Update:** download the new `.zxp` and `Install on ...` file and run the installer again,
+the same way as [the first install](#1-install). It replaces the old version. Your
+settings and keys stay.
 
 **Uninstall:**
 
-- With a ZXP installer: select Zen Stickers and click **Remove**.
-- By hand: close the Adobe apps and delete the `com.zengane.zenstickers` or
-  `ZenStickers` folder from one of these places:
+- Close the Adobe apps and delete the `ZenStickers` (or `com.zengane.zenstickers`)
+  folder from one of these places:
   - Windows: `C:\Program Files\Common Files\Adobe\CEP\extensions\` or
     `%APPDATA%\Adobe\CEP\extensions\`
   - macOS: `/Library/Application Support/Adobe/CEP/extensions/` or
@@ -491,13 +502,15 @@ Open with the **gear** button, or the panel menu (the ≡ icon in the panel's ti
 
 ## 22. Problems and fixes
 
+**"Failed to install, status = -631".**
+That message comes from Adobe's installer when the Creative Cloud app is not signed in.
+Use `Install on Windows.cmd` / `Install on macOS.command` from the release instead:
+they do not need Creative Cloud.
+
 **The panel is blank after installing.**
-Adobe knows about a problem where some installers break the signature check.
-Start Premiere Pro or After Effects once with **Run as administrator**, or turn on
-Adobe's debug mode:
-Windows: in the registry, `HKEY_CURRENT_USER\Software\Adobe\CSXS.12`, add a String
-`PlayerDebugMode` = `1`.
-macOS: in Terminal, `defaults write com.adobe.CSXS.12 PlayerDebugMode 1`.
+Run `Fix blank panel (Windows).cmd` (or the macOS one) from the release, then restart
+the app. It turns on Adobe's "PlayerDebugMode" for your user. To undo it, run the same
+file from a command prompt with the word `undo` after it.
 
 **"Premiere is busy… N s".**
 Premiere has one script engine for all panels. Another panel or a long task is
