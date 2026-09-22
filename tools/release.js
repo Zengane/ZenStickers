@@ -54,10 +54,16 @@ let TOKEN = '';
                 'Panel blank after installing? Run `Fix-blank-panel-Windows.cmd` (or the macOS one), then restart the app.',
                 '',
                 'Full instructions: [user guide](https://github.com/' + REPO + '/blob/main/docs/GUIDE.md)'
-            ].join('\n')
+            ].join('\n');
+    if (!rel) {
+        rel = await api('POST', `https://api.github.com/repos/${REPO}/releases`, {
+            tag_name: tag, target_commitish: 'main', name: 'Zen Stickers ' + version, make_latest: 'true', body: body
         });
         console.log('Created release', tag);
-    } else console.log('Release', tag, 'already exists: updating its files');
+    } else {
+        rel = await api('PATCH', `https://api.github.com/repos/${REPO}/releases/${rel.id}`, { body: body, name: 'Zen Stickers ' + version });
+        console.log('Release', tag, 'already exists: updating its text and files');
+    }
 
     /* Replace every file: remove the release's current files first, so renamed or
        dropped ones do not linger. */

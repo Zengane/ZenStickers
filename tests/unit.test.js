@@ -227,3 +227,9 @@ test('host scripts take the loop arguments', () => {
     assert.ok(!/createNewSequenceFromClips/.test(pp), 'Premiere no longer nests (it overwrote audio tracks)');
     assert.ok(/src\.loop = loops/.test(ae), 'After Effects loops the footage');
 });
+
+test('build and release tools parse', () => {
+    for (const f of ['build-zxp.js', 'release.js', 'build-index.js']) {
+        assert.doesNotThrow(() => acorn.parse(fs.readFileSync(path.join(ROOT, 'tools', f), 'utf8'), { ecmaVersion: 2022, allowHashBang: true, allowAwaitOutsideFunction: true }), f);
+    }
+});
