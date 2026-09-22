@@ -1,0 +1,21 @@
+{
+  "name": "zen-stickers",
+  "version": "1.5.2",
+  "description": "GIFs, stickers, images, videos, icons and emojis for Premiere Pro and After Effects",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node --test tests/unit.test.js",
+    "test:live": "node tests/sources.live.js",
+    "test:app": "node --experimental-websocket tests/app.test.js",
+    "build:index": "node tools/build-index.js",
+    "build:zxp": "node tools/build-zxp.js",
+    "test:ffmpeg": "node tests/ffmpeg.live.js"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "devDependencies": {
+    "acorn": "^8.18.0"
+  },
+  "private": true
+}

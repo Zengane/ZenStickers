@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Zen Stickers</title>
+    <style>html,body{background:var(--k232323, #232323);margin:0}</style>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/panel.css">
+</head>
+<body>
+<div class="app" id="app">
+
+    <!-- What to look for: one tab each. -->
+    <header class="top">
+        <div class="tabs" id="tabs">
+            <button class="tab" data-tab="gifs"     style="--tab-color:#4ea1ff"><span class="dot"></span><span class="t">GIFs</span></button>
+            <button class="tab" data-tab="stickers" style="--tab-color:#ff6fae"><span class="dot"></span><span class="t">Stickers</span></button>
+            <button class="tab" data-tab="photos"   style="--tab-color:#b48cff"><span class="dot"></span><span class="t">Images</span></button>
+            <button class="tab" data-tab="videos"   style="--tab-color:#f0b44c"><span class="dot"></span><span class="t">Videos</span></button>
+            <button class="tab" data-tab="icons"    style="--tab-color:#5fd08a"><span class="dot"></span><span class="t">Vectors</span></button>
+            <button class="tab" data-tab="emojis"   style="--tab-color:#ffd24a"><span class="dot"></span><span class="t">Emojis</span></button>
+        </div>
+        <button class="icon" id="open-folder" title="Open the download folder">
+            <svg viewBox="0 0 16 16" width="13" height="13"><path fill="currentColor" d="M1 3.5C1 2.7 1.7 2 2.5 2h3.6l1.5 1.6h5.9c.8 0 1.5.7 1.5 1.5v7.4c0 .8-.7 1.5-1.5 1.5h-11C1.7 14 1 13.3 1 12.5v-9zm1.5 0v9h11V5.1H7l-1.5-1.6h-3z"/></svg>
+        </button>
+        <button class="icon" id="open-settings" title="Settings">
+            <svg viewBox="0 0 16 16" width="13" height="13"><path fill="currentColor" d="M9.4 1l.3 1.8c.5.2 1 .5 1.4.8l1.7-.7 1.4 2.4-1.4 1.1c.1.5.1 1.1 0 1.6l1.4 1.1-1.4 2.4-1.7-.7c-.4.3-.9.6-1.4.8L9.4 15H6.6l-.3-1.8c-.5-.2-1-.5-1.4-.8l-1.7.7-1.4-2.4 1.4-1.1a4.6 4.6 0 010-1.6L1.8 6.9l1.4-2.4 1.7.7c.4-.3.9-.6 1.4-.8L6.6 1h2.8zM8 5.6a2.4 2.4 0 100 4.8 2.4 2.4 0 000-4.8z"/></svg>
+        </button>
+    </header>
+
+    <!-- Per-tab choices: where from, which set, which design. -->
+    <div class="bar" id="bar-source">
+        <button class="srcbtn" id="source-btn" title="Where to search"></button>
+        <span class="source-hint" id="source-hint"></span>
+        <div class="srcmenu hidden" id="source-menu"></div>
+    </div>
+
+    <div class="bar filters hidden" id="bar-filters"></div>
+
+    <div class="bar hidden" id="bar-icons">
+        <select id="icon-set" title="Icon set"></select>
+        <label class="swatch" id="icon-color-wrap" title="Icon colour">
+            <input type="color" id="icon-color">
+        </label>
+    </div>
+
+    <div class="bar col hidden" id="bar-emojis">
+        <div class="vendors" id="vendors"></div>
+        <div class="emoji-opts">
+            <div class="tones" id="tones" title="Skin tone"></div>
+            <button class="chip hidden" id="animated" title="Google has moving versions of some emojis">Animated</button>
+        </div>
+    </div>
+
+    <section class="browser" id="browser">
+        <div class="search">
+            <svg viewBox="0 0 16 16" width="12" height="12"><path fill="currentColor" d="M6.5 1a5.5 5.5 0 014.4 8.8l3.9 3.9-1.1 1.1-3.9-3.9A5.5 5.5 0 116.5 1zm0 1.6a3.9 3.9 0 100 7.8 3.9 3.9 0 000-7.8z"/></svg>
+            <input id="search" spellcheck="false" placeholder="Search">
+            <button class="x hidden" id="search-clear" title="Clear search">&times;</button>
+            <div class="zoom" title="Result size (Ctrl + mouse wheel)">
+                <button id="zoom-out" title="Smaller">&minus;</button>
+                <button id="zoom-val" title="Back to 100%">100%</button>
+                <button id="zoom-in" title="Bigger">+</button>
+            </div>
+        </div>
+        <div class="list" id="list"></div>
+        <div class="list-foot" id="foot"></div>
+    </section>
+
+    <footer class="status" id="status">Ready</footer>
+</div>
+
+<!-- A closer look at one result. Click anywhere to close. -->
+<div class="preview hidden" id="preview">
+    <div class="pv-stage" id="preview-stage"></div>
+    <div class="pv-bar"><span id="preview-title"></span><button class="btn-mini" data-act="pv-import">Import</button></div>
+</div>
+
+<!-- Right-click on a result. -->
+<div class="menu hidden" id="menu">
+    <button data-act="preview">Preview (or Alt + click)</button>
+    <div class="menu-sep"></div>
+    <button data-act="place">Import and place at playhead</button>
+    <button data-act="import">Import to project only</button>
+    <button data-act="animated" class="hidden">Import the animated version</button>
+    <div class="menu-sep"></div>
+    <button data-act="reveal">Show the file in Explorer</button>
+    <button data-act="link">Copy link</button>
+</div>
+
+<script src="js/CSInterface.js"></script>
+<script src="js/store.js"></script>
+<script src="js/net.js"></script>
+<script src="js/iconify.js"></script>
+<script src="js/sources.js"></script>
+<script src="js/emoji.js"></script>
+<script src="js/applepack.js"></script>
+<script src="js/media.js"></script>
+<script src="js/incoming.js"></script>
+<script src="js/ffmpeg.js"></script>
+<script src="js/panel.js"></script>
+</body>
+</html>

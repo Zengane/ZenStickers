@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Zen Stickers Settings</title>
+    <style>html,body{background:var(--k232323, #232323);margin:0}</style>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+<div class="dlg">
+    <nav class="side">
+        <div class="brand">Zen Stickers</div>
+        <button class="nav on" data-page="general">General</button>
+        <button class="nav" data-page="gifs">GIFs and loops</button>
+        <button class="nav" data-page="sources">Sources</button>
+        <button class="nav" data-page="emoji">Emojis and icons</button>
+        <button class="nav" data-page="look">Look</button>
+        <button class="nav" id="open-guide" title="Opens the user guide in your web browser">User guide</button>
+        <div class="ver" id="ver">1.0.0</div>
+    </nav>
+
+    <main class="pages">
+        <section class="page" id="page-general">
+            <h2>Click on a result</h2>
+            <div class="seg" id="click">
+                <button data-v="place">Import and place</button>
+                <button data-v="import">Import only</button>
+            </div>
+            <p class="hint">Right-click a result for the other choice. Placing never overwrites clips. It uses the first free track at the playhead.</p>
+
+            <h2>Save files</h2>
+            <div class="seg" id="saveTo">
+                <button data-v="project">Next to the project</button>
+                <button data-v="folder">In one folder</button>
+            </div>
+            <div class="keyrow" id="folder-row">
+                <input id="folder" spellcheck="false">
+                <button class="btn" id="browse">Browse…</button>
+            </div>
+            <p class="hint">"Next to the project" makes a "Zen Stickers" folder beside the project file. An unsaved project uses the folder below.</p>
+
+            <h2>Empty search box</h2>
+            <div class="seg" id="trending">
+                <button data-v="off">Show nothing</button>
+                <button data-v="on">Show trending</button>
+            </div>
+            <p class="hint">"Show nothing" keeps the panel quiet until you type. Each tab still has a "Show trending" link.</p>
+
+            <h2>Photos</h2>
+            <div class="seg" id="photoSize">
+                <button data-v="large">Large (about 2500 px)</button>
+                <button data-v="original">Original size</button>
+            </div>
+
+            <h2>Videos</h2>
+            <div class="seg" id="videoQuality">
+                <button data-v="sd">720p</button>
+                <button data-v="hd">1080p</button>
+                <button data-v="uhd">Biggest (4K)</button>
+            </div>
+
+            <h2>Flickr</h2>
+            <div class="seg" id="flickrFree">
+                <button data-v="on">Free to reuse only</button>
+                <button data-v="off">Everything</button>
+            </div>
+            <p class="hint">Photos with a licence get a "(credit).txt" file beside them saying who made them.</p>
+
+            <h2>Content rating</h2>
+            <div class="seg" id="rating">
+                <button data-v="g">G</button>
+                <button data-v="pg">PG</button>
+                <button data-v="pg-13">PG-13</button>
+                <button data-v="r">R</button>
+            </div>
+        </section>
+
+        <section class="page hidden" id="page-gifs">
+            <h2>Download GIFs and stickers as</h2>
+            <div class="seg" id="gifFormat">
+                <button data-v="gif">GIF</button>
+                <button data-v="mp4">MP4</button>
+                <button data-v="webm">WebM</button>
+            </div>
+            <p class="hint">GIF: works everywhere, keeps see-through parts. MP4: smaller and smoother, no see-through parts (stickers stay GIF).
+                WebM: small and keeps see-through parts, when the source has it (KLIPY). If the app cannot read a WebM, the GIF is used instead.</p>
+
+            <h2>Loop short clips</h2>
+            <div class="seg" id="loop">
+                <button data-v="on">On</button>
+                <button data-v="off">Off</button>
+            </div>
+            <p class="hint">A short clip becomes one clip that repeats. Premiere: ffmpeg makes a looped copy (ProRes 4444, transparency kept) and it goes on a free track. After Effects: the footage's own loop setting.</p>
+
+            <div class="numrow">
+                <label>Loop when shorter than <input type="number" id="loopUnder" min="0.1" max="30" step="0.1"> s</label>
+                <label>Repeat until at least <input type="number" id="loopTarget" min="0.5" max="120" step="0.5"> s</label>
+            </div>
+
+            <h2>Loop markers</h2>
+            <div class="seg" id="loopMarker">
+                <button data-v="none">None</button>
+                <button data-v="first">Where the loop starts</button>
+                <button data-v="every">At every repeat</button>
+            </div>
+            <div class="seg" id="markerOn">
+                <button data-v="clip">On the clip</button>
+                <button data-v="timeline">On the timeline</button>
+            </div>
+            <p class="hint">"Where the loop starts" is the end of the first pass, where the clip begins to repeat.</p>
+
+            <h2>ffmpeg</h2>
+            <p class="hint" id="ff-status">Looking for ffmpeg…</p>
+            <div class="keyrow">
+                <input id="ffmpegPath" spellcheck="false" placeholder="Empty: find it on the PATH, or download it when needed">
+                <button class="btn" id="ff-install">Download now</button>
+            </div>
+            <p class="hint">On Windows, Zen Stickers downloads ffmpeg by itself (about 100 MB, once) the first time a loop needs it. It comes from github.com/BtbN/FFmpeg-Builds, the LGPL build, checked against its published checksum.</p>
+        </section>
+
+        <section class="page hidden" id="page-sources">
+            <p class="hint first">Your own keys: free, and only saved on this computer. Everything else works without a key: Google Images (it opens in your browser), Wikimedia, Openverse, Twitch emotes, 7TV, FrankerFaceZ, emoji.gg, Iconify and all emojis.</p>
+            <h2>GIPHY key</h2>
+            <div class="keyrow">
+                <input id="giphyKey" spellcheck="false" placeholder="Paste it here">
+                <button class="btn getkey" data-url="https://developers.giphy.com/dashboard/">Get one</button>
+            </div>
+            <p class="hint">Pick "API", not "SDK". GIFs and stickers.</p>
+
+            <h2>KLIPY key</h2>
+            <div class="keyrow">
+                <input id="klipyKey" spellcheck="false" placeholder="Paste it here">
+                <button class="btn getkey" data-url="https://partner.klipy.com/">Get one</button>
+            </div>
+            <p class="hint">GIFs, stickers and clips.</p>
+
+            <h2>Unsplash key</h2>
+            <div class="keyrow">
+                <input id="unsplashKey" spellcheck="false" placeholder="Paste it here">
+                <button class="btn getkey" data-url="https://unsplash.com/oauth/applications">Get one</button>
+            </div>
+            <p class="hint">Use the "Access Key".</p>
+
+            <h2>Pexels key</h2>
+            <div class="keyrow">
+                <input id="pexelsKey" spellcheck="false" placeholder="Paste it here">
+                <button class="btn getkey" data-url="https://www.pexels.com/api/new/">Get one</button>
+            </div>
+            <p class="hint">Photos and videos.</p>
+
+            <h2>Pixabay key</h2>
+            <div class="keyrow">
+                <input id="pixabayKey" spellcheck="false" placeholder="Paste it here">
+                <button class="btn getkey" data-url="https://pixabay.com/api/docs/">Get one</button>
+            </div>
+            <p class="hint">Log in; the key is shown on that page. Photos, vectors and videos.</p>
+
+            <h2>Flickr key</h2>
+            <div class="keyrow">
+                <input id="flickrKey" spellcheck="false" placeholder="Paste it here">
+                <button class="btn getkey" data-url="https://www.flickr.com/services/apps/create/">Get one</button>
+            </div>
+            <p class="hint">Use the "Key", not the secret.</p>
+
+            <h2>Test</h2>
+            <div class="keyrow">
+                <button class="btn" id="test">Test all keys</button>
+            </div>
+            <div class="test-out" id="test-out"></div>
+        </section>
+
+        <section class="page hidden" id="page-emoji">
+            <h2>Emoji and icon size</h2>
+            <div class="seg" id="emojiSize">
+                <button data-v="512">512 px</button>
+                <button data-v="1024">1024 px</button>
+                <button data-v="2048">2048 px</button>
+            </div>
+            <p class="hint">Premiere gets a PNG this big. After Effects gets SVG where the design has one, and a PNG this big where it does not.</p>
+
+            <h2>AI upscale</h2>
+            <div class="seg" id="upscale">
+                <button data-v="on">On</button>
+                <button data-v="off">Off (original size)</button>
+            </div>
+            <p class="hint">Apple, Samsung, WhatsApp and Facebook are only 108 to 512 px. The upscaler (Real-ESRGAN) runs on your graphics card, about 2 s per new emoji. Each emoji is upscaled once, then kept in the cache.</p>
+
+            <h2>After Effects: SVG as shapes</h2>
+            <div class="seg" id="aeShapes">
+                <button data-v="off">Keep as SVG</button>
+                <button data-v="on">Make shape layers</button>
+            </div>
+            <p class="hint">Shape layers can be recoloured and animated part by part.</p>
+        </section>
+
+        <section class="page hidden" id="page-look">
+            <h2>Theme</h2>
+            <div class="seg" id="theme">
+                <button data-v="auto">Match the app</button>
+                <button data-v="dark">Dark</button>
+                <button data-v="light">Light</button>
+            </div>
+
+            <h2>Moving previews</h2>
+            <div class="seg" id="animate">
+                <button data-v="all">Always</button>
+                <button data-v="hover">On hover only</button>
+            </div>
+            <p class="hint">On hover only is lighter on a slow machine.</p>
+
+            <h2>Panel size <span class="val" id="ui-val"></span></h2>
+            <input type="range" id="ui" min="75" max="200" step="5">
+            <p class="hint">Also: Ctrl+Shift+= and Ctrl+Shift+- in the panel.</p>
+        </section>
+
+        <footer class="actions">
+            <button class="btn" id="reset">Defaults</button>
+            <span class="grow"></span>
+            <button class="btn" id="cancel">Cancel</button>
+            <button class="btn primary" id="save">Save</button>
+        </footer>
+    </main>
+</div>
+<script src="../js/CSInterface.js"></script>
+<script src="../js/store.js"></script>
+<script src="../js/net.js"></script>
+<script src="../js/ffmpeg.js"></script>
+<script src="settings.js"></script>
+</body>
+</html>

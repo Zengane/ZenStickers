@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionManifest Version="11.0" ExtensionBundleId="com.zengane.zenstickers"
+    ExtensionBundleVersion="1.5.2" ExtensionBundleName="Zen Stickers"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ExtensionList>
+        <Extension Id="com.zengane.zenstickers.panel" Version="1.5.2" />
+        <Extension Id="com.zengane.zenstickers.settings" Version="1.5.2" />
+    </ExtensionList>
+    <ExecutionEnvironment>
+        <HostList>
+            <Host Name="PPRO" Version="[15.0,99.9]" />
+            <Host Name="AEFT" Version="[22.0,99.9]" />
+        </HostList>
+        <LocaleList>
+            <Locale Code="All" />
+        </LocaleList>
+        <RequiredRuntimeList>
+            <RequiredRuntime Name="CSXS" Version="11.0" />
+        </RequiredRuntimeList>
+    </ExecutionEnvironment>
+    <DispatchInfoList>
+        <!-- One page, two host scripts: the Zen Paste dual-host pattern. -->
+        <Extension Id="com.zengane.zenstickers.panel">
+            <DispatchInfo Host="PPRO">
+                <Resources>
+                    <MainPath>./index.html</MainPath>
+                    <ScriptPath>./host/host-ppro.jsx</ScriptPath>
+                    <CEFCommandLine>
+                        <Parameter>--enable-nodejs</Parameter>
+                        <Parameter>--mixed-context</Parameter>
+                        <Parameter>--allow-file-access</Parameter>
+                        <Parameter>--allow-file-access-from-files</Parameter>
+                    </CEFCommandLine>
+                </Resources>
+                <Lifecycle>
+                    <AutoVisible>true</AutoVisible>
+                </Lifecycle>
+                <UI>
+                    <Type>Panel</Type>
+                    <Menu>Zen Stickers</Menu>
+                    <Geometry>
+                        <Size><Height>560</Height><Width>340</Width></Size>
+                        <MinSize><Height>200</Height><Width>200</Width></MinSize>
+                    </Geometry>
+                </UI>
+            </DispatchInfo>
+            <DispatchInfo Host="AEFT">
+                <Resources>
+                    <MainPath>./index.html</MainPath>
+                    <ScriptPath>./host/host-aeft.jsx</ScriptPath>
+                    <CEFCommandLine>
+                        <Parameter>--enable-nodejs</Parameter>
+                        <Parameter>--mixed-context</Parameter>
+                        <Parameter>--allow-file-access</Parameter>
+                        <Parameter>--allow-file-access-from-files</Parameter>
+                    </CEFCommandLine>
+                </Resources>
+                <Lifecycle>
+                    <AutoVisible>true</AutoVisible>
+                </Lifecycle>
+                <UI>
+                    <Type>Panel</Type>
+                    <Menu>Zen Stickers</Menu>
+                    <Geometry>
+                        <Size><Height>560</Height><Width>340</Width></Size>
+                        <MinSize><Height>200</Height><Width>200</Width></MinSize>
+                    </Geometry>
+                </UI>
+            </DispatchInfo>
+        </Extension>
+
+        <!-- Settings: the house pattern. ModalDialog, no <Menu>, opened from the
+             panel's gear or flyout. MinSize/MaxSize declared, because a dialog
+             without them was never created on Corner Snap. -->
+        <Extension Id="com.zengane.zenstickers.settings">
+            <DispatchInfo>
+                <Resources>
+                    <MainPath>./settings/index.html</MainPath>
+                    <CEFCommandLine>
+                        <Parameter>--enable-nodejs</Parameter>
+                        <Parameter>--mixed-context</Parameter>
+                    </CEFCommandLine>
+                </Resources>
+                <Lifecycle>
+                    <AutoVisible>true</AutoVisible>
+                </Lifecycle>
+                <UI>
+                    <Type>ModalDialog</Type>
+                    <Geometry>
+                        <Size><Height>560</Height><Width>540</Width></Size>
+                        <MinSize><Height>300</Height><Width>380</Width></MinSize>
+                        <MaxSize><Height>1400</Height><Width>1400</Width></MaxSize>
+                    </Geometry>
+                </UI>
+            </DispatchInfo>
+        </Extension>
+    </DispatchInfoList>
+</ExtensionManifest>

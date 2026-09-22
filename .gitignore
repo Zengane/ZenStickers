@@ -1,0 +1,21 @@
+# Build output and downloads
+dist/
+_build/
+node_modules/
+*.zxp
+
+# Signing: the certificate and its password never go in the repository
+*.p12
+*-password.txt
+
+# Local settings, keys and caches (they live in %APPDATA%, but just in case)
+settings.json
+state.json
+cache/
+apple96/
+
+# System files
+.DS_Store
+__MACOSX/
+Thumbs.db
+desktop.ini

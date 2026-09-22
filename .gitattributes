@@ -1,0 +1,9 @@
+# Line endings: text as LF in the repository. Program and model files are never touched.
+* text=auto
+*.exe binary
+*.dll binary
+*.bin binary
+*.param binary
+*.png binary
+*.zxp binary
+bin/esrgan/mac/realesrgan-ncnn-vulkan binary

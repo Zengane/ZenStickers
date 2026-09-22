@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Premiere: panel 8160, settings 8161. After Effects: panel 8162, settings 8163. -->
+<ExtensionList>
+  <Extension Id="com.zengane.zenstickers.panel">
+    <HostList>
+      <Host Name="PPRO" Port="8160"/>
+      <Host Name="AEFT" Port="8162"/>
+    </HostList>
+  </Extension>
+  <Extension Id="com.zengane.zenstickers.settings">
+    <HostList>
+      <Host Name="PPRO" Port="8161"/>
+      <Host Name="AEFT" Port="8163"/>
+    </HostList>
+  </Extension>
+</ExtensionList>
